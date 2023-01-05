@@ -6,14 +6,14 @@ libusb wasm
     sudo apt-get install libtool
     sudo apt-get install libudev-dev
     sudo apt-get install emscripten
-    emconfigure ./configure --host=wasm32 --prefix=/home/user/vicente
+    emconfigure ./configure --host=wasm32 --prefix=/home/user/libusb-emscripten
     emmake make install
 
 compilación em++
-    em++ ../src/application.cpp -o helloworld.html -I/home/user/library/include/ /home/user/library/lib/libusb-1.0.a --bind -s ASYNCIFY -s ALLOW_MEMORY_GROWTH -s INVOKE_RUN=0 -s EXPORTED_RUNTIME_METHODS=['callMain']; sudo cp helloworld.* /home/user/www/
+    em++ ../src/application.cpp -o helloworld.html -I/home/user/libusb-emscripten/include/ /home/user/libusb-emscripten/lib/libusb-1.0.a --bind -s ASYNCIFY -s ALLOW_MEMORY_GROWTH -s INVOKE_RUN=0 -s EXPORTED_RUNTIME_METHODS=['callMain']; sudo cp helloworld.* ../www
 
 ejecución en navegador
-    serve \\wsl.localhost\Ubuntu\home\user\www
+    serve \\wsl.localhost\Ubuntu\home\user\poclibusb\www
 
     navigator.usb.requestDevice({filters: []})
     Module.callMain()
