@@ -1,0 +1,30 @@
+WebAssembly
+    Get the Emscripten SDK, using these instructions: https://emscripten.org/docs/getting_started/downloads.html
+    https://developer.mozilla.org/en-US/docs/WebAssembly/C_to_wasm
+
+libusb wasm
+    sudo apt-get install libtool
+    sudo apt-get install libudev-dev
+    sudo apt-get install emscripten
+    emconfigure ./configure --host=wasm32 --prefix=/home/user/vicente
+    emmake make install
+
+compilación em++
+    em++ ../src/application.cpp -o helloworld.html -I/home/user/library/include/ /home/user/library/lib/libusb-1.0.a --bind -s ASYNCIFY -s ALLOW_MEMORY_GROWTH -s INVOKE_RUN=0 -s EXPORTED_RUNTIME_METHODS=['callMain']; sudo cp helloworld.* /home/user/www/
+
+ejecución en navegador
+    serve \\wsl.localhost\Ubuntu\home\user\www
+
+    navigator.usb.requestDevice({filters: []})
+    Module.callMain()
+
+libusb-1.0-0-dev
+    g++ source.cpp `pkg-config --libs --cflags libusb-1.0`
+
+    https://learn.microsoft.com/en-us/windows/wsl/connect-usb
+    usbipd wsl list
+    usbipd wsl attach --busid 1-4
+    sudo chmod 777 /dev/bus/usb/_001/002
+
+    pkg-config --list-all
+
